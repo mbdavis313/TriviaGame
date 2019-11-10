@@ -1,0 +1,103 @@
+<!-- Timeout Example -->
+<!-- Go to the Last Script Tag -->
+
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Trivia Game - JavaScript Assignment 2 Homework </title>
+
+  </head>
+
+  <body>
+
+    <h1>Trivia Game</h1>
+    <h4>Use the Button Timeout Start or Cancel buttons at the bottom of the page to Start or Cancel the game.</h4>
+    <h4>You will have 45 seconds to answer the questions.</h4>
+
+    <p id="question1" data-answer="D" class="question">What country uses the US Dollar as official currency?</p>
+    <div class="radio-group"><label for="">Philipines</label><input type="radio" name="question1" value="A"></div>
+    <div class="radio-group"><label for="">Cayman Islands</label><input type="radio" name="question1" value="B"></div>
+    <div class="radio-group"><label for="">Bermuda</label><input type="radio" name="question1" value="C"></div>
+    <div class="radio-group"><label for="">El Salvador</label><input type="radio" name="question1" value="D"></div>
+    
+    <p id="question2" data-answer="D" class="question">What is the spectrum of visible light to humans?</p>
+    <div class="radio-group"><label for="">200 to 800 nanometers</label><input type="radio" name="question2" value="A"></div>
+    <div class="radio-group"><label for="">300 to 1000 nanometers</label><input type="radio" name="question2" value="B"></div>
+    <div class="radio-group"><label for="">100 to 900 nanometers</label><input type="radio" name="question2" value="C"></div>
+    <div class="radio-group"><label for="">400 to 700 nanometers</label><input type="radio" name="question2" value="D"></div>
+    
+    <p id="question3" data-answer="B" class="question">What sea and ocean is Barbados located?</p>
+    <div class="radio-group"><label for="">Pacific & Caribbean</label><input type="radio" name="question3" value="A"></div>
+    <div class="radio-group"><label for="">Atlantic & Caribbean</label><input type="radio" name="question3" value="B"></div>
+    <div class="radio-group"><label for="">Indian & South China</label><input type="radio" name="question3" value="C"></div>
+    <div class="radio-group"><label for="">South Atlantic & Caribbean</label><input type="radio" name="question3" value="D"></div>
+    
+    <p id="question4" data-answer="A" class="question">What is the capital city of Ghana?</p>
+    <div class="radio-group"><label for="">Accra</label><input type="radio" name="question4" value="A"></div>
+    <div class="radio-group"><label for="">Monrovia</label><input type="radio" name="question4" value="B"></div>
+    <div class="radio-group"><label for="">Lagos</label><input type="radio" name="question4" value="C"></div>
+    <div class="radio-group"><label for="">Kumasi</label><input type="radio" name="question4" value="D"></div>
+    
+    <p id="question5" data-answer="B" class="question">How many keys are on the international computer keyboard?</p>
+    <div class="radio-group"><label for="">101 & 104</label><input type="radio" name="question5" value="A"></div>
+    <div class="radio-group"><label for="">102 & 104</label><input type="radio" name="question5" value="B"></div>
+    <div class="radio-group"><label for="">84 & 104</label><input type="radio" name="question5" value="C"></div>
+    <div class="radio-group"><label for="">86 & 102</label><input type="radio" name="question5" value="D"></div>
+    
+    <p id="question6" data-answer="C" class="question">Where is Roatan located?</p>
+    <div class="radio-group"><label for="">Philipines</label><input type="radio" name="question6" value="A"></div>
+    <div class="radio-group"><label for="">Indonesia</label><input type="radio" name="question6" value="B"></div>
+    <div class="radio-group"><label for="">Honduras</label><input type="radio" name="question6" value="C"></div>
+    <div class="radio-group"><label for="">Colombia</label><input type="radio" name="question6" value="D"></div>
+    <br>
+
+    <button id="start">Button Timeout Start</button>
+    <button id="cancel">Button Timeout Cancel</button>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Script -->
+    <script type="text/javascript">
+      //  Variable that will hold the button alert's timeout when it is clicked.
+      var delayButtonAlert;
+
+  
+
+      //  Start on click.
+      $("#start").on("click", function() {
+        //  Set the button alert's timeout to run three seconds after the function's called.
+        delayButtonAlert = setTimeout(function() {
+          alert("Game Ended.");
+          scoreGame();
+        }, 45000);
+      });
+
+      //  Cancel on click.
+      $("#cancel").on("click", function() {
+        // Clear the button alert's timeout.
+        clearTimeout(delayButtonAlert);
+      });
+
+      
+      function scoreGame() {
+        let score = 0;
+        $(".question").each(function(){
+          const answer=$(this).attr("data-answer");
+          const selected=`[name=${$(this).attr("id")}]:checked`;
+          if (answer===$(selected).val()) {
+            score++;
+          }
+        })
+        console.log (score);
+      }
+
+    </script>
+
+  </body>
+
+</html>
